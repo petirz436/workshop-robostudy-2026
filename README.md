@@ -9,9 +9,9 @@ Panduan konfigurasi environment laptop peserta (Windows, macOS, dan Linux) agar 
 1. Klik tombol **`<> Code`** berwarna hijau di kanan atas repositori ini.
 2. Pilih opsi **`Download ZIP`**.
 3. Buka folder `Downloads` pada perangkat Anda, lalu ekstrak arsip `.zip`:
-   - **Windows:** Klik kanan berkas $\rightarrow$ pilih **Extract All...** $\rightarrow$ klik **Extract**.
+   - **Windows:** Klik kanan berkas -> pilih **Extract All...** -> klik **Extract**.
    - **macOS:** Klik 2x berkas `.zip`.
-   - **Linux:** Klik kanan $\rightarrow$ pilih **Extract Here**.
+   - **Linux:** Klik kanan -> pilih **Extract Here**.
 4. Seluruh proses instalasi wajib dijalankan dari dalam folder hasil ekstraksi.
 
 ---
@@ -46,24 +46,32 @@ Skrip otomatis akan memeriksa dependensi sistem, mengunduh komponen yang belum t
    ```text
    setup_windows.bat
    ```
-   *(Jika muncul dialog Windows SmartScreen, klik **More info** $\rightarrow$ **Run anyway**).*
+   *(Jika muncul dialog Windows SmartScreen, klik **More info** -> **Run anyway**).*
 3. Tunggu hingga proses selesai dan menampilkan status `ALL CORE CHECKS PASSED`.
 4. Ambil tangkapan layar hasil verifikasi.
 
 ---
 
 ### 🍎 macOS
-1. Buka aplikasi **Terminal** (`Cmd + Spasi`, ketik `Terminal`).
-2. Ketik `bash ` (dengan spasi), seret berkas `setup_unix.sh` dari Finder ke jendela Terminal, lalu tekan **Enter**.
-3. Tunggu hingga verifikasi selesai dan simpan tangkapan layar hasilnya.
+1. Buka aplikasi **Terminal** (tekan `Cmd + Spasi`, ketik `Terminal`, lalu tekan **Enter**).
+2. Ketik `bash ` (tulis kata bash lalu beri **satu spasi**).
+3. Seret (*drag and drop*) berkas `setup_unix.sh` dari Finder ke dalam jendela Terminal tersebut.
+4. Tekan **Enter**, tunggu hingga verifikasi selesai, lalu simpan tangkapan layar hasilnya.
 
 ---
 
 ### 🐧 Linux
-Buka Terminal di dalam folder proyek, lalu jalankan:
-```bash
-bash setup_unix.sh
-```
+1. Buka **Terminal** (tekan shortcut `Ctrl + Alt + T`).
+2. Masuk ke folder proyek dengan mengetik perintah:
+   ```bash
+   cd ~/Downloads/workshop-robostudy-2026-main
+   ```
+   *(Atau klik kanan area kosong di dalam folder proyek pada file manager -> pilih **Open in Terminal**).*
+3. Jalankan skrip setup:
+   ```bash
+   bash setup_unix.sh
+   ```
+4. Tunggu hingga verifikasi selesai dan simpan tangkapan layar hasilnya.
 
 ---
 
@@ -114,12 +122,18 @@ Menguji fungsi komputasi pustaka dan akses kamera:
 
 ### 🍎 macOS & 🐧 Linux
 
-Buka aplikasi **Terminal**, kemudian jalankan instruksi berikut:
+#### Cara Membuka Terminal & Berpindah Folder:
+- **macOS:** Tekan `Cmd + Spasi`, ketik `Terminal`, lalu tekan **Enter**.
+- **Linux:** Tekan kombinasi tombol `Ctrl + Alt + T` (atau klik kanan area kosong di dalam folder proyek pada file manager lalu pilih **Open in Terminal**).
+
+Setelah Terminal terbuka, jalankan instruksi berikut secara berurutan:
 
 #### 1. Masuk ke Direktori Proyek
+Salin dan jalankan perintah perpindahan folder berikut:
 ```bash
 cd "$HOME/Downloads/workshop-robostudy-2026-main"
 ```
+*(Catatan: Jika folder berada di lokasi lain, ketik `cd ` lalu seret folder tersebut dari Finder / File Manager ke dalam jendela Terminal).*
 
 #### 2. Membuat Virtual Environment (.venv)
 ```bash
@@ -152,9 +166,9 @@ code --install-extension ms-toolsai.jupyter
 | **`The system cannot find the path specified` saat `cd`** | Nama atau lokasi folder tidak sesuai dengan perintah terminal. | Buka folder di File Explorer, salin path lengkap dari bilah alamat, lalu gunakan `cd /d "PATH_YANG_DISALIN"`. |
 | **Jendela instalasi otomatis langsung tertutup** | Berkas dijalankan dari dalam preview file zip tanpa diekstrak terlebih dahulu. | Ekstrak berkas `.zip` terlebih dahulu, lalu jalankan kembali skrip dari dalam folder hasil ekstraksi. |
 | **Pop-up dialog: `Windows protected your PC`** | Fitur proteksi Windows SmartScreen pada berkas skrip yang baru diunduh. | Klik **More info**, kemudian klik **Run anyway**. |
-| **`'python' is not recognized as an internal or external command`** | Python belum terpasang atau variabel PATH belum terkonfigurasi. | Buka installer resmi Python $\rightarrow$ pilih **Modify** $\rightarrow$ centang **Add Python to environment variables** $\rightarrow$ selesaikan instalasi. |
+| **`'python' is not recognized as an internal or external command`** | Python belum terpasang atau variabel PATH belum terkonfigurasi. | Buka installer resmi Python -> pilih **Modify** -> centang **Add Python to environment variables** -> selesaikan instalasi. |
 | **`Camera: Not detected / disabled by privacy switch`** | Shutter fisik webcam tertutup atau izin akses aplikasi dinonaktifkan sistem. | Buka penutup kamera fisik atau aktifkan perizinan webcam pada menu pengaturan privasi sistem operasi. |
-| **`No module named 'cv2'` pada file Notebook (.ipynb)** | VS Code belum menggunakan interpreter dari `.venv`. | Klik tombol **Select Kernel** pada pojok kanan atas editor notebook $\rightarrow$ pilih **Python Environments...** $\rightarrow$ arahkan ke **.venv**. |
+| **`No module named 'cv2'` pada file Notebook (.ipynb)** | VS Code belum menggunakan interpreter dari `.venv`. | Klik tombol **Select Kernel** pada pojok kanan atas editor notebook -> pilih **Python Environments...** -> arahkan ke **.venv**. |
 | **`ImportError: libGL.so.1` (Linux)** | Dependensi rendering sistem Linux belum terpasang. | Jalankan perintah terminal: `sudo apt update && sudo apt install -y libgl1 libglib2.0-0`. |
 
 ---
