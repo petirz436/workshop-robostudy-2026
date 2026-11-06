@@ -4,161 +4,162 @@ Panduan konfigurasi environment laptop peserta (Windows, macOS, dan Linux) agar 
 
 ---
 
-## 📥 Cara Mengunduh Berkas Repository Ini
+## 📥 Langkah 0: Mengunduh Berkas Repository
 
-Bagi peserta yang belum terbiasa menggunakan Git, cara termudah adalah mengunduh file `.zip` langsung dari halaman GitHub ini:
-
-1. Klik tombol hijau bertuliskan **`<> Code`** di bagian atas halaman repositori ini.
-2. Pada menu dropdown yang muncul, klik opsi paling bawah: **`Download ZIP`**.
-3. Buka folder `Downloads` di laptopmu, lalu **ekstrak file `.zip` tersebut**:
-   - **Windows:** Klik kanan file `.zip` $\rightarrow$ pilih **Extract All...** $\rightarrow$ klik **Extract**.
-   - **macOS:** Klik 2x file `.zip` hingga menjadi folder biasa.
-   - **Linux:** Klik kanan $\rightarrow$ **Extract Here** (atau jalankan perintah `unzip`).
-4. Masuk ke dalam folder hasil ekstraksi, lalu lanjutkan ke langkah instalasi di bawah.
-
-> ⚠️ **PENTING:** Jangan langsung menjalankan file skrip setup dari dalam preview file `.zip` tanpa mengekstraknya terlebih dahulu!
+1. Klik tombol **`<> Code`** berwarna hijau di kanan atas repositori ini.
+2. Pilih opsi **`Download ZIP`**.
+3. Buka folder `Downloads` pada perangkat Anda, lalu ekstrak arsip `.zip`:
+   - **Windows:** Klik kanan berkas $\rightarrow$ pilih **Extract All...** $\rightarrow$ klik **Extract**.
+   - **macOS:** Klik 2x berkas `.zip`.
+   - **Linux:** Klik kanan $\rightarrow$ pilih **Extract Here**.
+4. Seluruh proses instalasi wajib dijalankan dari dalam folder hasil ekstraksi.
 
 ---
 
 ## 📌 INSTRUKSI WAJIB SETELAH SELESAI SETUP
 
 1. **Ambil Tangkapan Layar (Screenshot):**  
-   Setelah pengujian selesai dan menampilkan status `ALL CORE CHECKS PASSED`, ambil screenshot jendela terminal atau kotak pop-up tersebut secara utuh sebagai bukti kesiapan laptop Anda.
+   Setelah pengujian selesai dan menampilkan status `ALL CORE CHECKS PASSED`, ambil tangkapan layar jendela terminal atau pop-up konfirmasi.
 2. **Kirimkan Bukti Kesiapan:**  
-   Kirimkan screenshot tersebut ke grup WhatsApp peserta atau form konfirmasi yang disediakan panitia sebelum batas waktu yang ditentukan (target H-2).
-3. **Pusat Bantuan & Kendala:**  
-   Jika menemukan kendala pada langkah mana pun, **segera tanyakan di grup WhatsApp peserta**. Jangan menunggu hingga hari H agar dapat dipandu langsung oleh tim asisten.
+   Kirimkan screenshot tersebut ke grup WhatsApp peserta / link konfirmasi panitia (target selesai H-2).
+3. **Pusat Bantuan:**  
+   Jika menemukan kendala teknis pada tahap mana pun, tanyakan di grup WhatsApp peserta dengan melampirkan tangkapan layar pesan galat.
 
 ---
 
-## Spesifikasi Kebutuhan
+## ⚙️ Spesifikasi Kebutuhan Sistem
 
 - **Editor**: Visual Studio Code (beserta ekstensi Python & Jupyter)
 - **Runtime**: Python 3.11 atau 3.12 (64-bit)
 - **Library**: `opencv-python`, `numpy`
-- **Perangkat**: Laptop dengan webcam / kamera bawaan (opsional, tersedia opsi file video)
+- **Perangkat**: Laptop dengan webcam / kamera bawaan (tersedia opsi file video contoh jika kamera fisik tidak tersedia)
 
 ---
 
-## Metode 1: Setup Otomatis (Direkomendasikan)
+## 🚀 METODE 1: Setup Otomatis
 
-Skrip otomatis akan mendeteksi status instalasi laptop, mengunduh komponen yang belum terpasang, mengonfigurasi virtual environment, dan langsung menjalankan uji verifikasi software serta webcam laptop.
+Skrip otomatis akan memeriksa dependensi sistem, mengunduh komponen yang belum terpasang, mengonfigurasi virtual environment lokal, dan menjalankan verifikasi sistem.
 
 ### 🪟 Windows
-1. Pastikan file `.zip` materi sudah diekstrak (**Klik Kanan > Extract All...**).
-2. Masuk ke folder hasil ekstrak, lalu klik ganda file:
+1. Buka folder hasil ekstraksi melalui **File Explorer**.
+2. Klik ganda berkas:
    ```text
    setup_windows.bat
    ```
-   > **Catatan Windows SmartScreen:** Jika muncul pop-up biru *"Windows protected your PC"*, klik tulisan **"More info"** lalu klik tombol **"Run anyway"**.
-3. Tunggu proses instalasi hingga muncul notifikasi dan status `ALL CORE CHECKS PASSED`.
-4. Ambil screenshot hasilnya dan kirimkan ke grup peserta.
+   *(Jika muncul dialog Windows SmartScreen, klik **More info** $\rightarrow$ **Run anyway**).*
+3. Tunggu hingga proses selesai dan menampilkan status `ALL CORE CHECKS PASSED`.
+4. Ambil tangkapan layar hasil verifikasi.
 
 ---
 
 ### 🍎 macOS
-Buka aplikasi **Terminal** (`Cmd + Spasi`, ketik `Terminal`), lalu seret file `setup_unix.sh` ke dalam Terminal dengan cara:
-1. Ketik `bash ` (pastikan ada satu spasi setelah kata bash).
-2. Seret (*drag and drop*) file `setup_unix.sh` dari Finder ke dalam jendela Terminal.
-3. Tekan **Enter**.
-
-*(Atau masuk ke folder proyek via terminal lalu jalankan: `bash setup_unix.sh`).*
+1. Buka aplikasi **Terminal** (`Cmd + Spasi`, ketik `Terminal`).
+2. Ketik `bash ` (dengan spasi), seret berkas `setup_unix.sh` dari Finder ke jendela Terminal, lalu tekan **Enter**.
+3. Tunggu hingga verifikasi selesai dan simpan tangkapan layar hasilnya.
 
 ---
 
-### 🐧 Linux (Ubuntu / Debian / Distro Lain)
-Buka **Terminal** (`Ctrl + Alt + T`), masuk ke folder proyek, dan jalankan:
-
+### 🐧 Linux
+Buka Terminal di dalam folder proyek, lalu jalankan:
 ```bash
 bash setup_unix.sh
 ```
 
 ---
 
-## Metode 2: Setup Manual Lewat Terminal
+## 💻 METODE 2: Setup Manual Langkah demi Langkah (Via Terminal)
 
-Bagi yang ingin menjalankan perintah instalasi baris demi baris secara langsung di terminal:
+Gunakan metode ini untuk melakukan konfigurasi mandiri melalui baris perintah.
 
-### 1. Perintah Terminal Windows (PowerShell)
-Buka PowerShell di dalam folder proyek, lalu salin dan jalankan blok perintah berikut:
+---
 
-```powershell
+### 🪟 Panduan Terminal Windows (Command Prompt / PowerShell)
+
+Buka aplikasi **Command Prompt** (tekan tombol Windows, ketik `cmd`, lalu tekan Enter) atau **PowerShell**, kemudian jalankan instruksi berikut secara berurutan:
+
+#### 1. Masuk ke Direktori Proyek
+Sesuaikan dengan folder hasil ekstraksi di laptop Anda (bawaan nama folder dari GitHub adalah `workshop-robostudy-2026-main`):
+```cmd
+cd "%USERPROFILE%\Downloads\workshop-robostudy-2026-main"
+```
+*(Catatan: Jika Anda mengekstrak ke folder bernama lain atau lokasi berbeda, gunakan `cd /d "PATH_FOLDER_ANDA"`).*
+
+#### 2. Membuat Virtual Environment (.venv)
+Membuat lingkungan Python terisolasi di dalam folder:
+```cmd
 python -m venv .venv
-.\.venv\Scripts\python -m pip install --upgrade pip
-.\.venv\Scripts\python -m pip install opencv-python numpy
-code --install-extension ms-python.python
-code --install-extension ms-toolsai.jupyter
-.\.venv\Scripts\python tes_kesiapan.py
 ```
 
-### 2. Perintah Terminal macOS & Linux (Bash / Zsh)
-Buka Terminal di dalam folder proyek, lalu salin dan jalankan blok perintah berikut:
+#### 3. Memasang Dependensi Pustaka
+Mengunduh dan memasang OpenCV serta NumPy ke dalam virtual environment:
+```cmd
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install opencv-python numpy
+```
 
-```bash
-python3 -m venv .venv
-./.venv/bin/python -m pip install --upgrade pip
-./.venv/bin/python -m pip install opencv-python numpy
+#### 4. Memasang Ekstensi Visual Studio Code
+Memasang dependensi ekstensi resmi Microsoft untuk VS Code:
+```cmd
 code --install-extension ms-python.python
 code --install-extension ms-toolsai.jupyter
+```
+
+#### 5. Menjalankan Verifikasi Sistem
+Menguji fungsi komputasi pustaka dan akses kamera:
+```cmd
+.\.venv\Scripts\python.exe tes_kesiapan.py
+```
+
+---
+
+### 🍎 macOS & 🐧 Linux
+
+Buka aplikasi **Terminal**, kemudian jalankan instruksi berikut:
+
+#### 1. Masuk ke Direktori Proyek
+```bash
+cd "$HOME/Downloads/workshop-robostudy-2026-main"
+```
+
+#### 2. Membuat Virtual Environment (.venv)
+```bash
+python3 -m venv .venv
+```
+
+#### 3. Memasang Dependensi Pustaka
+```bash
+./.venv/bin/python -m pip install --upgrade pip
+./.venv/bin/python -m pip install opencv-python numpy
+```
+
+#### 4. Memasang Ekstensi Visual Studio Code
+```bash
+code --install-extension ms-python.python
+code --install-extension ms-toolsai.jupyter
+```
+
+#### 5. Menjalankan Verifikasi Sistem
+```bash
 ./.venv/bin/python tes_kesiapan.py
 ```
 
 ---
 
-## Verifikasi Kesiapan Sistem & Kamera
+## 🔧 Panduan Penanganan Masalah (Troubleshooting)
 
-Untuk menguji kembali apakah environment dan webcam berfungsi tanpa mengulang proses instalasi dari awal, jalankan perintah ini kapan saja:
-
-- **Windows:**
-  ```powershell
-  .\.venv\Scripts\python tes_kesiapan.py
-  ```
-- **macOS / Linux:**
-  ```bash
-  ./.venv/bin/python tes_kesiapan.py
-  ```
-
-Hasil pengujian yang berhasil akan menampilkan output:
-```text
-=======================================================
-ENVIRONMENT & HARDWARE VERIFICATION
-=======================================================
-OS        : Windows / Linux / Darwin ...
-Python    : 3.12.x (...)
-NumPy     : x.x.x [OK]
-OpenCV    : x.x.x [OK]
-CV Algor. : Color Masking & Contours [OK]
-Camera    : Detected (640x480) [OK]
-=======================================================
-STATUS    : ALL CORE CHECKS PASSED
-INFO      : Kamera laptop terdeteksi dan siap untuk pengujian video.
-Silakan simpan tangkapan layar ini sebagai konfirmasi kesiapan.
-```
-
-📸 **Jangan lupa simpan tangkapan layar (screenshot) tampilan di atas sebagai bukti kesiapan laptop Anda.**
-
----
-
-## Panduan Penanganan Masalah (Troubleshooting)
-
-Jika mengalami kendala, **kirimkan screenshot pesan galat ke grup WhatsApp peserta** agar dapat dibantu lebih cepat. Berikut beberapa solusi cepat untuk masalah umum:
-
-| Masalah | Penyebab | Solusi |
+| Gejala / Pesan Galat | Penyebab | Solusi |
 | :--- | :--- | :--- |
-| **`[PERINGATAN] FILE BERJALAN DARI DALAM FILE ZIP!`** | File `.bat` diklik langsung dari file arsip tanpa diekstrak. | Tutup jendela, klik kanan file zip $\rightarrow$ pilih **Extract All...** (Ekstrak Semua). Jalankan `setup_windows.bat` dari dalam folder hasil ekstrak. |
-| **Pop-up biru: `Windows protected your PC`** | Fitur keamanan Windows SmartScreen pada skrip unduhan. | Klik **More info**, kemudian klik **Run anyway**. |
-| **`Camera: Not detected / disabled by privacy switch`** | Shutter fisik webcam tertutup atau izin kamera Windows dinonaktifkan. | Buka penutup kamera fisik laptop atau buka **Settings > Privacy & Security > Camera** di Windows dan aktifkan izin akses kamera. *(Status ini bersifat opsional, materi tetap dapat berjalan dengan file video bawaan).* |
-| **`'python' is not recognized as an internal or external command`** | Python belum masuk ke daftar Environment Variables (PATH). | Buka installer Python, pilih **Modify** $\rightarrow$ klik **Next** $\rightarrow$ centang **Add Python to environment variables** $\rightarrow$ klik **Install**. |
-| **`ExecutionPolicy` / `running scripts is disabled` (PowerShell)** | Kebijakan restriksi script default Windows. | Anda tidak perlu mengaktifkan virtual environment (`activate`). Skrip dan perintah di atas menggunakan pemanggilan langsung `.\.venv\Scripts\python.exe`. |
-| **`error: externally-managed-environment` (macOS/Linux)** | Sistem operasi membatasi instalasi pip langsung ke Python global sistem. | Selalu gunakan virtual environment (`.venv`) sesuai instruksi di atas. |
-| **`ImportError: libGL.so.1` (Linux)** | Dependensi rendering grafis sistem belum terpasang. | Jalankan perintah terminal: `sudo apt update && sudo apt install -y libgl1 libglib2.0-0`. |
-| **`No module named 'cv2'` pada file Notebook (`.ipynb`)** | VS Code memilih interpreter Python sistem, bukan `.venv`. | Buka file `.ipynb`, lihat pojok kanan atas editor $\rightarrow$ klik **Select Kernel** $\rightarrow$ pilih **Python Environments...** $\rightarrow$ pilih **.venv**. |
-| **Koneksi gagal saat download library (`ReadTimeoutError`)** | Jaringan internet lambat atau terputus saat instalasi pip. | Pastikan laptop terhubung ke internet stabil, lalu jalankan ulang file setup. |
+| **`The system cannot find the path specified` saat `cd`** | Nama atau lokasi folder tidak sesuai dengan perintah terminal. | Buka folder di File Explorer, salin path lengkap dari bilah alamat, lalu gunakan `cd /d "PATH_YANG_DISALIN"`. |
+| **Jendela instalasi otomatis langsung tertutup** | Berkas dijalankan dari dalam preview file zip tanpa diekstrak terlebih dahulu. | Ekstrak berkas `.zip` terlebih dahulu, lalu jalankan kembali skrip dari dalam folder hasil ekstraksi. |
+| **Pop-up dialog: `Windows protected your PC`** | Fitur proteksi Windows SmartScreen pada berkas skrip yang baru diunduh. | Klik **More info**, kemudian klik **Run anyway**. |
+| **`'python' is not recognized as an internal or external command`** | Python belum terpasang atau variabel PATH belum terkonfigurasi. | Buka installer resmi Python $\rightarrow$ pilih **Modify** $\rightarrow$ centang **Add Python to environment variables** $\rightarrow$ selesaikan instalasi. |
+| **`Camera: Not detected / disabled by privacy switch`** | Shutter fisik webcam tertutup atau izin akses aplikasi dinonaktifkan sistem. | Buka penutup kamera fisik atau aktifkan perizinan webcam pada menu pengaturan privasi sistem operasi. |
+| **`No module named 'cv2'` pada file Notebook (.ipynb)** | VS Code belum menggunakan interpreter dari `.venv`. | Klik tombol **Select Kernel** pada pojok kanan atas editor notebook $\rightarrow$ pilih **Python Environments...** $\rightarrow$ arahkan ke **.venv**. |
+| **`ImportError: libGL.so.1` (Linux)** | Dependensi rendering sistem Linux belum terpasang. | Jalankan perintah terminal: `sudo apt update && sudo apt install -y libgl1 libglib2.0-0`. |
 
 ---
 
-## Rencana Cadangan Hari H
+## 📋 Prosedur Hari H
 
-Apabila laptop peserta mengalami kendala teknis spesifik yang belum terselesaikan hingga sesi registrasi selesai:
-1. Peserta melapor ke meja panitia/asisten pada rentang waktu **07.00 – 07.30 WIB**.
-2. Jika kendala sistem membutuhkan waktu lebih dari 15 menit perbaikan, peserta akan diarahkan menggunakan metode **Pair Programming** (bergabung dengan rekan satu meja yang environment-nya sudah terverifikasi `ALL CORE CHECKS PASSED`) agar waktu materi utama tidak tertunda.
+1. Peserta yang mengalami kendala teknis dapat melapor ke meja panitia/asisten pada rentang waktu **07.00 – 07.30 WIB**.
+2. Jika kendala sistem pada perangkat peserta membutuhkan penanganan lebih dari 15 menit, peserta akan diarahkan menggunakan metode **Pair Programming** (bergabung dengan rekan satu meja yang telah terverifikasi) agar alur penyampaian materi workshop dapat dimulai tepat waktu.
