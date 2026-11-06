@@ -4,6 +4,22 @@ Panduan konfigurasi environment laptop peserta (Windows, macOS, dan Linux) agar 
 
 ---
 
+## 📥 Cara Mengunduh Berkas Repository Ini
+
+Bagi peserta yang belum terbiasa menggunakan Git, cara termudah adalah mengunduh file `.zip` langsung dari halaman GitHub ini:
+
+1. Klik tombol hijau bertuliskan **`<> Code`** di bagian atas halaman repositori ini.
+2. Pada menu dropdown yang muncul, klik opsi paling bawah: **`Download ZIP`**.
+3. Buka folder `Downloads` di laptopmu, lalu **ekstrak file `.zip` tersebut**:
+   - **Windows:** Klik kanan file `.zip` $\rightarrow$ pilih **Extract All...** $\rightarrow$ klik **Extract**.
+   - **macOS:** Klik 2x file `.zip` hingga menjadi folder biasa.
+   - **Linux:** Klik kanan $\rightarrow$ **Extract Here** (atau jalankan perintah `unzip`).
+4. Masuk ke dalam folder hasil ekstraksi, lalu lanjutkan ke langkah instalasi di bawah.
+
+> ⚠️ **PENTING:** Jangan langsung menjalankan file skrip setup dari dalam preview file `.zip` tanpa mengekstraknya terlebih dahulu!
+
+---
+
 ## 📌 INSTRUKSI WAJIB SETELAH SELESAI SETUP
 
 1. **Ambil Tangkapan Layar (Screenshot):**  
