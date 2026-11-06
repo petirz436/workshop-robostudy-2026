@@ -75,13 +75,44 @@ Skrip otomatis akan memeriksa dependensi sistem, mengunduh komponen yang belum t
 
 ---
 
-## 💻 METODE 2: Setup Manual Langkah demi Langkah (Via Terminal)
+## 💻 METODE 2: Setup Manual Langkah demi Langkah
 
-Gunakan metode ini untuk melakukan konfigurasi mandiri melalui baris perintah.
+Gunakan metode ini jika Anda ingin melakukan instalasi mandiri langkah demi langkah.
 
 ---
 
-### 🪟 Panduan Terminal Windows (Command Prompt / PowerShell)
+### Tahap 1: Instalasi Software Dasar (Jika Belum Terpasang)
+
+Pastikan kedua perangkat lunak berikut sudah terpasang di laptop Anda sebelum membuka terminal:
+
+#### 1. Visual Studio Code (VS Code)
+- **Tautan Unduh Resmi:** [code.visualstudio.com/Download](https://code.visualstudio.com/Download)
+- **Cara Instalasi:**
+  - **Windows:** Unduh installer `User Installer 64-bit` -> buka file instalasi -> pilih *I accept the agreement* -> klik *Next* hingga selesai -> klik *Install*.
+  - **macOS:** Unduh berkas `.zip` untuk Mac -> ekstrak -> seret aplikasi `Visual Studio Code.app` ke dalam folder `Applications`.
+  - **Linux:** Unduh paket `.deb` (Ubuntu/Debian) atau `.rpm` (Fedora), lalu instal melalui terminal atau package manager.
+
+#### 2. Python 3.12 (64-bit)
+- **Tautan Unduh Resmi:** [python.org/downloads/release/python-3127](https://www.python.org/downloads/release/python-3127/)
+  - Windows: [Windows installer (64-bit)](https://www.python.org/ftp/python/3.12.7/python-3.12.7-amd64.exe)
+  - macOS: [macOS 64-bit universal2 installer](https://www.python.org/ftp/python/3.12.7/python-3.12.7-macos11.pkg)
+- **Cara Instalasi:**
+  - 🚨 **KHUSUS PENGGUNA WINDOWS (SANGAT PENTING):**  
+    Saat jendela instalasi Python pertama kali terbuka, **WAJIB CENTANG** kotak di bagian paling bawah bertuliskan:  
+    ☑️ **`Add python.exe to PATH`**  
+    Setelah dicentang, barulah klik tombol **Install Now**.  
+    *(Jika kotak ini lupa dicentang, terminal tidak akan mengenali perintah python).*
+  - **macOS:** Buka file `.pkg` yang telah diunduh -> klik *Continue* -> *Agree* -> *Install* hingga selesai.
+  - **Linux (Ubuntu/Debian):** Cukup pasang via terminal:  
+    `sudo apt update && sudo apt install -y python3 python3-venv python3-pip libgl1 libglib2.0-0`
+
+---
+
+### Tahap 2: Konfigurasi Virtual Environment & Library (Via Terminal)
+
+Setelah Python dan VS Code terpasang di laptop, lanjutkan konfigurasi workspace sesuai sistem operasi Anda:
+
+#### 🪟 Panduan Terminal Windows (Command Prompt / PowerShell)
 
 Buka aplikasi **Command Prompt** (tekan tombol Windows, ketik `cmd`, lalu tekan Enter) atau **PowerShell**, kemudian jalankan instruksi berikut secara berurutan:
 
