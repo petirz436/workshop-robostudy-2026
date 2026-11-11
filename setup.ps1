@@ -187,10 +187,10 @@ if (-not (Test-Path $VenvPy)) {
     return
 }
 
-Write-Host "Mengunduh dan menginstal OpenCV & NumPy..." -ForegroundColor Yellow
-Write-Host "(Kecepatan tergantung koneksi internet, proses membutuhkan waktu 1-2 menit)..."
+Write-Host "Mengunduh dan menginstal OpenCV, NumPy, Matplotlib & IPyKernel (versi terkunci)..." -ForegroundColor Yellow
+Write-Host "(Kecepatan tergantung koneksi internet, proses membutuhkan waktu 1-3 menit)..."
 & $VenvPy -m pip install --upgrade pip
-& $VenvPy -m pip install opencv-python numpy
+& $VenvPy -m pip install opencv-python==4.12.0.88 numpy==2.2.6 matplotlib==3.10.3 ipykernel==6.29.5
 Write-Host "Dependensi terpasang [OK]" -ForegroundColor Green
 
 # 6. Menjalankan Pengujian Sistem

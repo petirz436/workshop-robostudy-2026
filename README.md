@@ -29,9 +29,15 @@ Panduan konfigurasi environment laptop peserta (Windows, macOS, dan Linux) agar 
 
 ## ⚙️ Spesifikasi Kebutuhan Sistem
 
+Versi Python dan pustaka dikunci agar lingkungan peserta sama persis dengan materi yang dijalankan pemateri:
+
 - **Editor**: Visual Studio Code (beserta ekstensi Python & Jupyter)
-- **Runtime**: Python 3.11 atau 3.12 (64-bit)
-- **Library**: `opencv-python`, `numpy`
+- **Runtime**: Python `3.12.x` (64-bit)
+- **Library (Versi Terkunci)**:
+  - `opencv-python==4.12.0.88`
+  - `numpy==2.2.6`
+  - `matplotlib==3.10.3`
+  - `ipykernel==6.29.5`
 - **Perangkat**: Laptop dengan webcam / kamera bawaan (tersedia opsi file video contoh jika kamera fisik tidak tersedia)
 
 ---
@@ -129,11 +135,11 @@ Membuat lingkungan Python terisolasi di dalam folder:
 python -m venv .venv
 ```
 
-#### 3. Memasang Dependensi Pustaka
-Mengunduh dan memasang OpenCV serta NumPy ke dalam virtual environment:
+#### 3. Memasang Dependensi Pustaka (Versi Terkunci)
+Mengunduh dan memasang OpenCV, NumPy, Matplotlib, serta IPyKernel ke dalam virtual environment:
 ```cmd
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
-.\.venv\Scripts\python.exe -m pip install opencv-python numpy
+.\.venv\Scripts\python.exe -m pip install opencv-python==4.12.0.88 numpy==2.2.6 matplotlib==3.10.3 ipykernel==6.29.5
 ```
 
 #### 4. Memasang Ekstensi Visual Studio Code
@@ -144,7 +150,7 @@ code --install-extension ms-toolsai.jupyter
 ```
 
 #### 5. Menjalankan Verifikasi Sistem
-Menguji fungsi komputasi pustaka dan akses kamera:
+Menguji fungsi komputasi pustaka, kernel notebook, dan akses kamera:
 ```cmd
 .\.venv\Scripts\python.exe tes_kesiapan.py
 ```
@@ -171,10 +177,10 @@ cd "$HOME/Downloads/workshop-robostudy-2026-main"
 python3 -m venv .venv
 ```
 
-#### 3. Memasang Dependensi Pustaka
+#### 3. Memasang Dependensi Pustaka (Versi Terkunci)
 ```bash
 ./.venv/bin/python -m pip install --upgrade pip
-./.venv/bin/python -m pip install opencv-python numpy
+./.venv/bin/python -m pip install opencv-python==4.12.0.88 numpy==2.2.6 matplotlib==3.10.3 ipykernel==6.29.5
 ```
 
 #### 4. Memasang Ekstensi Visual Studio Code
@@ -190,6 +196,32 @@ code --install-extension ms-toolsai.jupyter
 
 ---
 
+## 🔍 Contoh Output Verifikasi yang Berhasil
+
+Jika seluruh instalasi sudah benar, program `tes_kesiapan.py` akan menampilkan output seperti berikut:
+
+```text
+=======================================================
+ENVIRONMENT & HARDWARE VERIFICATION
+=======================================================
+OS        : Windows / Linux / Darwin ...
+Python    : 3.12.x (...)
+NumPy     : 2.2.6 [OK]
+OpenCV    : 4.12.0 [OK]
+Matplotlib: 3.10.3 [OK]
+IPyKernel : 6.29.5 [OK]
+CV Algor. : Color Masking, Contours & Plot [OK]
+Camera    : Detected (640x480) [OK]
+=======================================================
+STATUS    : ALL CORE CHECKS PASSED
+INFO      : Kamera laptop terdeteksi dan siap untuk pengujian video.
+Silakan simpan tangkapan layar ini sebagai konfirmasi kesiapan.
+```
+
+> 💡 **Tips Membuka Notebook di VS Code:** Saat membuka file `.ipynb` di VS Code, klik **`Select Kernel`** di pojok kanan atas -> pilih **`Python Environments...`** -> pilih **`.venv (Python 3.12.x)`**.
+
+---
+
 ## 🔧 Panduan Penanganan Masalah (Troubleshooting)
 
 | Gejala / Pesan Galat | Penyebab | Solusi |
@@ -199,7 +231,8 @@ code --install-extension ms-toolsai.jupyter
 | **Pop-up dialog: `Windows protected your PC`** | Fitur proteksi Windows SmartScreen pada berkas skrip yang baru diunduh. | Klik **More info**, kemudian klik **Run anyway**. |
 | **`'python' is not recognized as an internal or external command`** | Python belum terpasang atau variabel PATH belum terkonfigurasi. | Buka installer resmi Python -> pilih **Modify** -> centang **Add Python to environment variables** -> selesaikan instalasi. |
 | **`Camera: Not detected / disabled by privacy switch`** | Shutter fisik webcam tertutup atau izin akses aplikasi dinonaktifkan sistem. | Buka penutup kamera fisik atau aktifkan perizinan webcam pada menu pengaturan privasi sistem operasi. |
-| **`No module named 'cv2'` pada file Notebook (.ipynb)** | VS Code belum menggunakan interpreter dari `.venv`. | Klik tombol **Select Kernel** pada pojok kanan atas editor notebook -> pilih **Python Environments...** -> arahkan ke **.venv**. |
+| **`No module named 'cv2'` atau `'matplotlib'` pada file Notebook (.ipynb)** | VS Code belum menggunakan interpreter dari `.venv` atau instalasi library belum lengkap. | Klik tombol **Select Kernel** pada pojok kanan atas editor notebook -> pilih **Python Environments...** -> arahkan ke **.venv**. |
+| **`Running cells with '.venv' requires the ipykernel package`** | Paket `ipykernel==6.29.5` belum terpasang di `.venv`. | Jalankan ulang perintah `pip install` pada Langkah 3 agar `ipykernel==6.29.5` terpasang. |
 | **`ImportError: libGL.so.1` (Linux)** | Dependensi rendering sistem Linux belum terpasang. | Jalankan perintah terminal: `sudo apt update && sudo apt install -y libgl1 libglib2.0-0`. |
 
 ---

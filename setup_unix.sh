@@ -9,7 +9,9 @@ OS_NAME="$(uname -s)"
 echo "[1/4] Memeriksa Python..."
 PY_BIN=""
 
-if command -v python3 >/dev/null 2>&1; then
+if command -v python3.12 >/dev/null 2>&1; then
+    PY_BIN="python3.12"
+elif command -v python3 >/dev/null 2>&1; then
     PY_BIN="python3"
 fi
 
@@ -47,7 +49,7 @@ else
         fi
     fi
 fi
-echo "Python terdeteksi [OK]"
+echo "Python terdeteksi ($($PY_BIN --version)) [OK]"
 
 echo "[2/4] Memeriksa Visual Studio Code..."
 CODE_BIN=""
@@ -85,10 +87,10 @@ if [ ! -f ".venv/bin/python" ]; then
     $PY_BIN -m venv .venv
 fi
 
-echo "Mengunduh dan menginstal OpenCV & NumPy..."
-echo "(Kecepatan tergantung koneksi internet, proses membutuhkan waktu 1-2 menit)..."
+echo "Mengunduh dan menginstal OpenCV, NumPy, Matplotlib & IPyKernel (versi terkunci)..."
+echo "(Kecepatan tergantung koneksi internet, proses membutuhkan waktu 1-3 menit)..."
 ./.venv/bin/python -m pip install --upgrade pip
-./.venv/bin/python -m pip install opencv-python numpy
+./.venv/bin/python -m pip install opencv-python==4.12.0.88 numpy==2.2.6 matplotlib==3.10.3 ipykernel==6.29.5
 echo "Dependensi terpasang [OK]"
 
 echo "[4/4] Menjalankan pengujian sistem..."
