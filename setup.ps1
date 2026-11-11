@@ -1,10 +1,5 @@
-# ======================================================================
-# Setup Otomatis Lingkungan Workshop Computer Vision 2026 (PowerShell)
-# ======================================================================
-
 $ErrorActionPreference = "Stop"
 
-# 1. Pindah ke direktori skrip ini berada
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 Set-Location -LiteralPath $ScriptDir
 
@@ -14,7 +9,6 @@ Write-Host "====================================================================
 Write-Host "Direktori Kerja : $ScriptDir"
 Write-Host ""
 
-# 2. Cek apakah berjalan dari dalam arsip ZIP (Temp folder)
 if ($ScriptDir -match "AppData[\\/]Local[\\/]Temp") {
     Write-Host "[PERINGATAN] File ini berjalan langsung dari dalam preview ZIP!" -ForegroundColor Red
     Write-Host ""
@@ -26,14 +20,14 @@ if ($ScriptDir -match "AppData[\\/]Local[\\/]Temp") {
     return
 }
 
-# 3. Pengecekan / Pemasangan Python
-Write-Host "[1/4] Memeriksa instalasi Python..." -ForegroundColor Green
+Write-Host "[1/4] Memeriksa instalasi Python (target 3.12, minimal 3.10+)..." -ForegroundColor Green
 $PyCmd = $null
 
 if (Get-Command python -ErrorAction SilentlyContinue) {
     try {
-        $ver = & python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>$null
-        if ($LASTEXITCODE -eq 0 -and $ver) {
+        & python -c "import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)" 2>$null
+        if ($LASTEXITCODE -eq 0) {
+            $ver = & python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>$null
             $PyCmd = "python"
             Write-Host "Python $ver terdeteksi di PATH [OK]" -ForegroundColor Green
         }
@@ -42,10 +36,17 @@ if (Get-Command python -ErrorAction SilentlyContinue) {
 
 if (-not $PyCmd -and (Get-Command py -ErrorAction SilentlyContinue)) {
     try {
-        $ver = & py -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>$null
-        if ($LASTEXITCODE -eq 0 -and $ver) {
-            $PyCmd = "py"
-            Write-Host "Python $ver terdeteksi via Python Launcher (py) [OK]" -ForegroundColor Green
+        & py -3.12 -c "import sys; sys.exit(0)" 2>$null
+        if ($LASTEXITCODE -eq 0) {
+            $PyCmd = "py -3.12"
+            Write-Host "Python 3.12 terdeteksi via Python Launcher (py -3.12) [OK]" -ForegroundColor Green
+        } else {
+            & py -c "import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)" 2>$null
+            if ($LASTEXITCODE -eq 0) {
+                $ver = & py -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>$null
+                $PyCmd = "py"
+                Write-Host "Python $ver terdeteksi via Python Launcher (py) [OK]" -ForegroundColor Green
+            }
         }
     } catch {}
 }
@@ -79,7 +80,6 @@ if (-not $PyCmd) {
         }
     }
 
-    # Refresh PATH environment variable untuk sesi PowerShell ini
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "User") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "Machine")
 
     if (Get-Command python -ErrorAction SilentlyContinue) {
@@ -104,7 +104,6 @@ if (-not $PyCmd) {
     Write-Host "Python berhasil dipasang [OK]" -ForegroundColor Green
 }
 
-# 4. Pengecekan / Pemasangan Visual Studio Code
 Write-Host ""
 Write-Host "[2/4] Memeriksa Visual Studio Code..." -ForegroundColor Green
 $CodeCmd = $null
@@ -172,14 +171,25 @@ if ($CodeCmd) {
     Write-Host "Visual Studio Code belum terdeteksi. Silakan pasang ekstensi manual di VS Code nanti." -ForegroundColor Yellow
 }
 
-# 5. Menyiapkan Virtual Environment (.venv) & Library
 Write-Host ""
 Write-Host "[3/4] Menyiapkan environment lokal dan library..." -ForegroundColor Green
 $VenvPy = Join-Path $ScriptDir ".venv\Scripts\python.exe"
 
+if (Test-Path $VenvPy) {
+    & $VenvPy -c "import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)" 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Menghapus .venv lama karena versi Python < 3.10..." -ForegroundColor Yellow
+        Remove-Item -Path (Join-Path $ScriptDir ".venv") -Recurse -Force
+    }
+}
+
 if (-not (Test-Path $VenvPy)) {
     Write-Host "Membuat folder virtual environment (.venv)..."
-    & $PyCmd -m venv .venv
+    if ($PyCmd -eq "py -3.12") {
+        & py -3.12 -m venv .venv
+    } else {
+        & $PyCmd -m venv .venv
+    }
 }
 
 if (-not (Test-Path $VenvPy)) {
@@ -193,7 +203,6 @@ Write-Host "(Kecepatan tergantung koneksi internet, proses membutuhkan waktu 1-3
 & $VenvPy -m pip install opencv-python==4.12.0.88 numpy==2.2.6 matplotlib==3.10.3 ipykernel==6.29.5
 Write-Host "Dependensi terpasang [OK]" -ForegroundColor Green
 
-# 6. Menjalankan Pengujian Sistem
 Write-Host ""
 Write-Host "[4/4] Menjalankan pengujian sistem..." -ForegroundColor Green
 Write-Host ""

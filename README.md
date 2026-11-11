@@ -233,6 +233,7 @@ Silakan simpan tangkapan layar ini sebagai konfirmasi kesiapan.
 | **`Camera: Not detected / disabled by privacy switch`** | Shutter fisik webcam tertutup atau izin akses aplikasi dinonaktifkan sistem. | Buka penutup kamera fisik atau aktifkan perizinan webcam pada menu pengaturan privasi sistem operasi. |
 | **`No module named 'cv2'` atau `'matplotlib'` pada file Notebook (.ipynb)** | VS Code belum menggunakan interpreter dari `.venv` atau instalasi library belum lengkap. | Klik tombol **Select Kernel** pada pojok kanan atas editor notebook -> pilih **Python Environments...** -> arahkan ke **.venv**. |
 | **`Running cells with '.venv' requires the ipykernel package`** | Paket `ipykernel==6.29.5` belum terpasang di `.venv`. | Jalankan ulang perintah `pip install` pada Langkah 3 agar `ipykernel==6.29.5` terpasang. |
+| **`No matching distribution found for numpy==2.2.6`** | Versi Python di `.venv` terlalu lama (misal Python 3.8 di Ubuntu 20.04). `numpy==2.2.6` dan `matplotlib==3.10.3` butuh Python 3.10+ (target: Python `3.12.x`). | Pasang Python 3.12, hapus folder `.venv` lama (`rm -rf .venv` di Mac/Linux atau hapus folder `.venv` di Windows), lalu ulangi pembuatan `.venv` dengan Python 3.12 (`python3.12 -m venv .venv` atau `py -3.12 -m venv .venv`). |
 | **`ImportError: libGL.so.1` (Linux)** | Dependensi rendering sistem Linux belum terpasang. | Jalankan perintah terminal: `sudo apt update && sudo apt install -y libgl1 libglib2.0-0`. |
 
 ---
